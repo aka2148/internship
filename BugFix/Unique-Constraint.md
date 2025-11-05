@@ -9,6 +9,18 @@ What ON CONFLICT expects INSERT ... ON CONFLICT (col1, col2) DO ... requires tha
 Later migration(s) that bulk-load CSV rows use INSERT ... ON CONFLICT (date,shift) DO NOTHING to avoid duplicate loads. Because the unique constraint was missing, Postgres refused to run the ON CONFLICT load — it can't perform conflict checks without an index. Consequences
 ```
 
+# ISSUE FACED
+UUID not present
+No Users are present in the table
+
+## The fix
+```
+INSERT INTO users (id, email, role)
+VALUES ('00000000-0000-0000-0000-000000000001', 'dev@example.local', 'admin')
+ON CONFLICT (id) DO NOTHING;
+```
+This creates a default user for the database to use.
+
 ## The fix
 ```
 CREATE UNIQUE INDEX IF NOT EXISTS idx_production_date_shift_unique
