@@ -27,4 +27,5 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_production_date_shift_unique
 ON public.production_summary ("date", "shift");
 ```
 The command creates a **unique index** on the columns `(date, shift)` in the `production_summary` table. This means Postgres will now enforce that each combination of `date` and `shift` appears only once in the table.  
-With this unique index in place, Postgres can use it to detect when an `INSERT` tries to add a duplicate `(date, shift)` pair. As a result, the `INSERT ... ON CONFLICT (date, shift) DO NOTHING` statement can now correctly identify conflicts and skip inserting duplicates, instead of failing with an error.
+With this unique index in place, Postgres can use it to detect when an `INSERT` tries to add a duplicate `(date, shift)` pair.   
+As a result, the `INSERT ... ON CONFLICT (date, shift) DO NOTHING` statement can now correctly identify conflicts and skip inserting duplicates, instead of failing with an error.
