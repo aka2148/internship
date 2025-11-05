@@ -3,13 +3,9 @@ Table lacking unique constraint
 
 ``` 
 Postgres rejected the INSERT because your INSERT ... ON CONFLICT (date,shift) clause names a conflict target that does not exist — there is no UNIQUE constraint or unique index on (date, shift), so Postgres can't know how to detect a conflict. The SQLSTATE 42P10 means "invalid ON CONFLICT target". 
-```
-  
-```
+ 
 What ON CONFLICT expects INSERT ... ON CONFLICT (col1, col2) DO ... requires that (col1, col2) be protected by a UNIQUE constraint or UNIQUE INDEX (or an exclusion constraint). That index is what Postgres uses to detect a "conflict" (a row with the same key). If no such index/constraint exists, Postgres throws 42P10. Why it happened in your migration The migration that creates the table did not add a UNIQUE index or constraint on ("date","shift"). 
-```
-  
-``` 
+ 
 Later migration(s) that bulk-load CSV rows use INSERT ... ON CONFLICT (date,shift) DO NOTHING to avoid duplicate loads. Because the unique constraint was missing, Postgres refused to run the ON CONFLICT load — it can't perform conflict checks without an index. Consequences
 ```
 
