@@ -47,6 +47,8 @@ User → LLM → SQL → Execute
 5. Query execution + alias memory update
 
 
+    
+
 ### Intent Normalization Example
 ```
 User: "Give me a complete summary of February 2025 production including total tonnage, trips, and equipment utilization"
@@ -60,27 +62,30 @@ Intent Extractor →
 }
 ```
 ### Deterministic Query Generator
-**This would be mainly used for very specific commonly used templates such as:**
-Highest production in (month)
-Most productive Machine
-Complete Summary of (month)
+**This would be mainly used for very specific commonly used templates such as:**  
+Highest production in (month)  
+Most productive Machine  
+Complete Summary of (month)  
 
 This allows for greater consistency and saves tokens.
 
 Example Intent Objects:
 ```
-// Intent 1: user said "show me total sales"
+ Intent 1: user said "show me total sales"
 {
   intent: "get_total_sales",
   table: "sales"
 }
 
-// Intent 2: user said "show me sales by month"
+ Intent 2: user said "show me sales by month"
 {
   intent: "get_sales_by_month",
   table: "sales"
 }
 ```
+
+
+    
 **Sql Generator**
 ```
 interface Intent {
@@ -127,6 +132,8 @@ GROUP BY month
 ORDER BY month;
 ```
 
+
+    
 ### Query template example
 ```
 TEMPLATES = {
@@ -148,6 +155,8 @@ TEMPLATES = {
   `
 }
 ```
+
+  
 ### Optional Memory Map
 ```
 {
