@@ -60,6 +60,13 @@ Intent Extractor →
 }
 ```
 ### Deterministic Query Generator
+**This would be mainly used for very specific commonly used templates such as:**
+Highest production in (month)
+Most productive Machine
+Complete Summary of (month)
+
+This allows for greater consistency and saves tokens.
+
 Example Intent Objects:
 ```
 // Intent 1: user said "show me total sales"
