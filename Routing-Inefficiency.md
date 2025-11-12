@@ -8,7 +8,11 @@ This adds latency issues and increases token usage.
 Flipping the order will allow the rule-based routing to minimize latency and usage of tokens by routing the more obvious queries.  
 Queries that include the keywords graphs, chart, pie chart can all very safely be assumed to take the chart route without having to trouble the llm.
 
-
+### Currently the logic is based on this prompt
+```
+const prompt = `You are a mining operations query router. Analyze this question and decide whether it should be answered via SQL database query or RAG (document retrieval).
+```
+This creates a back and forth between the llm which is highly unnecessary.
 Rule Based routing is basically instant so the reduction in query time will be significant
 
 ### This also has benefits in confidentality as LLM does not know what information might be sensitive and is much more prone to being tricked then a simple set of guidelines to prevent exploitation.
