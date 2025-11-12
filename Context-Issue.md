@@ -27,3 +27,5 @@ type SessionContext = {
 ### Above is an example of how the json object would look.
 
 
+This is more of a temporary fix and can easily be replaced by a more practical solution like redis or semantic context through pinecone/vectorDB
+
